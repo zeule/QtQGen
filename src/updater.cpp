@@ -22,12 +22,23 @@
 #include "updaterdescriptiondlg.h"
 #include "updateshow.h"
 
+#include <QDir>
+#include <QDirIterator>
+#include <QTimer>
+#include <QApplication>
+#include <QBoxLayout>
+#include <QTextEdit>
+#include <QProgressBar>
+#include <QPushButton>
+#include <QNetworkReply>
+#include <QProcess>
+
 Updater::Updater(IControls *controls) :
     QMainWindow()
 {
     _controls = controls;
     _appName = QApplication::applicationName();
-    _remoteVersion = QString::fromWCharArray(QGEN_VER);
+    _remoteVersion = qGenToQStr(QGEN_VER);
     _updateUrl = controls->GetSettings()->GetUpdateURL();
     _lastFile = "";
 
@@ -109,7 +120,7 @@ void Updater::CheckForUpdate()
         return;
     }
 
-    if (_remoteVersion  != QString::fromWCharArray(QGEN_VER))
+    if (_remoteVersion  != qGenToQStr(QGEN_VER))
     {
         desc = qgen.firstChildElement("Desc").text();
     }
@@ -158,7 +169,7 @@ void Updater::CheckForUpdate()
     desc += tr("<br/><br/>--------------------<br/>Need to download %1").arg(ConvertSize(sizeToDownload));
 
     UpdateShow *dlg;
-    if (_remoteVersion  != QString::fromWCharArray(QGEN_VER))
+    if (_remoteVersion  != qGenToQStr(QGEN_VER))
     {
         dlg = new UpdateShow(_remoteVersion, desc, false, this);
     }

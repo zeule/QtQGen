@@ -19,6 +19,11 @@
 
 #include "controls.h"
 
+#include <QTranslator>
+#include <QStatusBar>
+#include <QApplication>
+#include <QInputDialog>
+
 Controls::Controls(const QString path)
 {
     _mainWindow = NULL;
@@ -277,7 +282,7 @@ void Controls::InitSearchData()
 void Controls::InitData()
 {
     _currentGamePath = QFileInfo(_currentPath, "NoName.qsp").absoluteFilePath();
-    _currentGamePass = QString::fromWCharArray(QGEN_PASSWD);
+    _currentGamePass = qGenToQStr(QGEN_PASSWD);
     InitSearchData();
     //_lastSaveTime = 0;
 }

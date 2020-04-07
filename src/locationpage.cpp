@@ -19,6 +19,8 @@
 
 #include "locationpage.h"
 
+#include <QSplitter>
+
 LocationPage::LocationPage(QWidget *parent, IControls *controls) : QWidget(parent)
 {
     _controls = controls;

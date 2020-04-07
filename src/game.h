@@ -22,6 +22,14 @@
 
 #include "datacontainer.h"
 
+extern "C" {
+	extern wchar_t qspKOI8RToUnicodeTable[];
+	extern unsigned char qspCP1251ToKOI8RTable[];
+
+	char qspReverseConvertSB(char, unsigned char *);
+	char qspDirectConvertSB(char, unsigned char *);
+}
+
 #ifdef _UNICODE
     typedef wchar_t QGEN_CHAR;
     #define QGEN_FMT2(x) L##x
@@ -116,6 +124,9 @@
 */
 class Controls;
 
+class QWidget;
+class QString;
+
 bool qspOpenQuest(const QString &fileName, QWidget *parent, Controls *controls, QString &password, bool merge);
 bool qspSaveQuest(const QString &fileName, const QString &passwd, Controls *controls);
 //bool qspExportTxt(const QGEN_CHAR *fileName, Controls *controls);
@@ -124,5 +135,23 @@ bool qspSaveQuest(const QString &fileName, const QString &passwd, Controls *cont
 
 bool OpenConfigFile(DataContainer *container, const QString &filename);
 bool SaveConfigFile(DataContainer *container, const QString &filename);
+
+inline QString qGenToQStr(const QGEN_CHAR* str)
+{
+#ifdef _UNICODE
+	return QString::fromWCharArray(str);
+#else
+	return QString::fromLocal8Bit(str);
+#endif
+}
+
+inline const QGEN_CHAR* QStrToQGen(const QString& str)
+{
+#ifdef _UNICODE
+	return str.toStdWString().c_str();
+#else
+	return str.toStdString().c_str();
+#endif
+}
 
 #endif // _QGEN_GAME_H_

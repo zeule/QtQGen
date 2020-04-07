@@ -4,7 +4,7 @@
 #include <QtCore/QCoreApplication>
 #include <QString>
 
-#if define(Q_OS_LINUX)
+#if defined(Q_OS_LINUX)
 #include "../libs/breakpad/src/client/linux/handler/exception_handler.h"
 #elif defined(Q_OS_WIN32)
 #include "../libs/breakpad/src/client/windows/handler/exception_handler.h"

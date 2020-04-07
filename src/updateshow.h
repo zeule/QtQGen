@@ -20,6 +20,8 @@
 #ifndef UPDATESHOW_H
 #define UPDATESHOW_H
 
+#include <QDialog>
+
 class UpdateShow : public QDialog
 {
     Q_OBJECT

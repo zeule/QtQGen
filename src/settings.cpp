@@ -19,6 +19,9 @@
 
 #include "settings.h"
 
+#include <QDir>
+#include <QFileInfo>
+
 Settings::Settings(QString path)
 {
     _path = path;
@@ -35,7 +38,7 @@ void Settings::InitSettings()
     _updateUrl = "";
     _isAutoUpdate = false;
 
-    _pathConfig = QFileInfo(_path, "qgen.cfg").absoluteFilePath();
+    _pathConfig = QFileInfo(QDir(_path), "qgen.cfg").absoluteFilePath();
     _isShowStatusBar = true;
 
     _isAutoSave = false;

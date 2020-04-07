@@ -20,6 +20,10 @@
 #ifndef UPDATERDESCRIPTIONDLG_H
 #define UPDATERDESCRIPTIONDLG_H
 
+#include <QDialog>
+
+class QTextEdit;
+
 class UpdaterDescriptionDlg : public QDialog
 {
     Q_OBJECT

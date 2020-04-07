@@ -19,6 +19,8 @@
 
 #include "actionslist.h"
 
+#include <QMenu>
+
 ActionsList::ActionsList(QWidget *parent, ILocationPage *locPage, ActionCode *actCode, IControls *controls) : QListWidget(parent)
 {
     _controls = controls;

@@ -22,6 +22,11 @@
 
 #include "icontrols.h"
 
+#include <QDialog>
+
+class QComboBox;
+class QCheckBox;
+
 class SearchDialog : public QDialog
 {
     Q_OBJECT

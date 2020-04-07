@@ -24,6 +24,8 @@
 #include "iobserver.h"
 #include "locationpage.h"
 
+#include <QTreeWidget>
+
 enum
 {
     DRAG_ACTION = 1000,

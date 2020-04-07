@@ -20,6 +20,9 @@
 #ifndef _QGEN_DATA_CONTAINER_H_
 #define _QGEN_DATA_CONTAINER_H_
 
+#include <QList>
+#include <QString>
+
 struct ActionData
 {
     QString pathPicture;            //Изображение для действия - относительный путь к файлу

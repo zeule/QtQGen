@@ -19,6 +19,13 @@
 
 #include "mergedialog.h"
 
+#include <QVBoxLayout>
+#include <QPixmap>
+#include <QLabel>
+#include <QStyle>
+#include <QPushButton>
+#include <QCheckBox>
+
 MergeDialog::MergeDialog(QWidget *parent, const QString& title, const QString &message) : QDialog(parent)
 {
     setWindowTitle(title);

@@ -19,6 +19,8 @@
 
 #include "actioncode.h"
 
+#include <QFileDialog>
+
 ActionCode::ActionCode(QWidget *parent, ILocationPage *locPage, IControls *controls) : QWidget(parent)
 {
     _controls = controls;

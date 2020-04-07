@@ -28,6 +28,8 @@
 #include "actioncode.h"
 #include "ilocationpage.h"
 
+class QSplitter;
+
 class LocationActions :
     public QWidget
 {

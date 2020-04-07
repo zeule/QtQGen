@@ -19,6 +19,10 @@
 
 #include "keywordsstore.h"
 
+#include <QStringList>
+#include <QDomDocument>
+#include <QFile>
+
 bool KeywordsStore::Load(const QString &filename)
 {
     QDomDocument keywordsFile;
@@ -80,7 +84,7 @@ QStringList KeywordsStore::GetWords(KeywordType type) const
         if (keyword.type == type)
         {
             if (keyword.word.contains('$'))
-                keyword.word.replace('$', '\\$');
+                keyword.word.replace('$', "\\$");
             result << "\\b" + keyword.word + "\\b";
         }
     }

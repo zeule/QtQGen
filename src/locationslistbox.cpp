@@ -19,6 +19,8 @@
 
 #include "locationslistbox.h"
 
+#include <QMenu>
+
 LocationsListBox::LocationsListBox(QWidget *parent, IControls *controls) : QTreeWidget(parent)
 {
     _controls = controls;

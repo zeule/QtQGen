@@ -25,6 +25,8 @@
 #include "actioncode.h"
 #include "ilocationpage.h"
 
+#include <QListWidget>
+
 class ActionsList :
     public QListWidget, public IObserver
 {

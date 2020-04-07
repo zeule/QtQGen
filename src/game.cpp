@@ -24,6 +24,9 @@
 #include <string.h>
 #include <wchar.h>
 
+#include <QInputDialog>
+#include <QDomNode>
+
 wchar_t qspCP1251ToUnicodeTable[] =
 {
     0x0402, 0x0403, 0x201A, 0x0453, 0x201E, 0x2026, 0x2020, 0x2021,
@@ -338,7 +341,7 @@ bool qspOpenQuest(const QString &fileName, QWidget *parent, Controls *controls, 
             "", &ok);
         if (ok)
         {
-            if (password != QString::fromStdWString(data))
+            if (password != qGenToQStr(data))
             {
                 free(data);
                 qspFreeStrs(strs, count, false);
@@ -357,7 +360,7 @@ bool qspOpenQuest(const QString &fileName, QWidget *parent, Controls *controls, 
     if (!merge)
     {
         container->Clear();
-        password = QString::fromWCharArray(data);
+        password = qGenToQStr(data);
     }
     free(data);
     data = (isOldFormat ? qspGameToQSPString(strs[0], isUCS2, false) : qspGameToQSPString(strs[3], isUCS2, true));
@@ -372,7 +375,7 @@ bool qspOpenQuest(const QString &fileName, QWidget *parent, Controls *controls, 
     {
         indexLoc = -1;
         data = qspGameToQSPString(strs[ind++], isUCS2, true);
-        QString locName = QString::fromWCharArray(data);
+        QString locName = qGenToQStr(data);
         free(data);
         if (merge)
         {
@@ -407,13 +410,13 @@ bool qspOpenQuest(const QString &fileName, QWidget *parent, Controls *controls, 
             return false;
         }
         data = qspGameToQSPString(strs[ind++], isUCS2, true);
-        temp = QString::fromWCharArray(data).replace(QString::fromWCharArray(QGEN_STRSDELIM), "\n");
+        temp = qGenToQStr(data).replace(qGenToQStr(QGEN_STRSDELIM), "\n");
         free(data);
 
         if (canAddLoc) container->SetLocationDesc(indexLoc, temp);
 
         data = qspGameToQSPString(strs[ind++], isUCS2, true);
-        temp = QString::fromWCharArray(data).replace(QString::fromWCharArray(QGEN_STRSDELIM), "\n");
+        temp = qGenToQStr(data).replace(qGenToQStr(QGEN_STRSDELIM), "\n");
         free(data);
 
         if (canAddLoc) container->SetLocationCode(indexLoc, temp);
@@ -431,10 +434,10 @@ bool qspOpenQuest(const QString &fileName, QWidget *parent, Controls *controls, 
         for (j = 0; j < actsCount; ++j)
         {
             data = (isOldFormat ? 0 : qspGameToQSPString(strs[ind++], isUCS2, true));
-            actImage = QString::fromWCharArray(data).replace(QString::fromWCharArray(QGEN_STRSDELIM), "\n");
+            actImage = qGenToQStr(data).replace(qGenToQStr(QGEN_STRSDELIM), "\n");
             free(data);
             data = qspGameToQSPString(strs[ind++], isUCS2, true);
-            nameAct = QString::fromWCharArray(data).replace(QString::fromWCharArray(QGEN_STRSDELIM), "\n");
+            nameAct = qGenToQStr(data).replace(qGenToQStr(QGEN_STRSDELIM), "\n");
             free(data);
             if (!nameAct.isEmpty() && canAddLoc)
             {
@@ -448,7 +451,7 @@ bool qspOpenQuest(const QString &fileName, QWidget *parent, Controls *controls, 
                 }
                 container->SetActionPicturePath(indexLoc, indexAct, actImage);
                 data = qspGameToQSPString(strs[ind], isUCS2, true);
-                temp = QString::fromWCharArray(data).replace(QString::fromWCharArray(QGEN_STRSDELIM), "\n");
+                temp = qGenToQStr(data).replace(qGenToQStr(QGEN_STRSDELIM), "\n");
                 free(data);
                 container->SetActionCode(indexLoc, indexAct, temp);
             }
@@ -539,8 +542,8 @@ long qspGameCodeWriteVal(char **s, long len, QString &val, bool isUCS2, bool isC
     char *temp;
     if (!val.isEmpty())
     {
-        val.replace("\n", QString::fromWCharArray(QGEN_STRSDELIM));
-        temp = qspQSPToGameString(val.toStdWString().c_str(), isUCS2, isCode);
+        val.replace("\n", qGenToQStr(QGEN_STRSDELIM));
+        temp = qspQSPToGameString(QStrToQGen(val), isUCS2, isCode);
         len = qspAddGameText(s, temp, isUCS2, len, -1, false);
         free(temp);
     }
@@ -564,9 +567,9 @@ bool qspSaveQuest(const QString &fileName, const QString &passwd, Controls *cont
     }
     DataContainer *container = controls->GetContainer();
     locsCount = container->GetLocationsCount();
-    str = QString::fromWCharArray(QGEN_GAMEID);
+    str = qGenToQStr(QGEN_GAMEID);
     len = qspGameCodeWriteVal(&buf, 0, str, true, false);
-    str = QString::fromWCharArray(QGEN_VER);
+    str = qGenToQStr(QGEN_VER);
     len = qspGameCodeWriteVal(&buf, len, str, true, false);
     str = QString(passwd);
     len = qspGameCodeWriteVal(&buf, len, str, true, true);
@@ -865,7 +868,7 @@ bool SaveConfigFile(DataContainer *container, const QString &filename)
     }
     QDomDocument doc;
     QDomElement root = doc.createElement("QGen-project");
-    root.setAttribute("version", QString::fromWCharArray(QGEN_VER));
+    root.setAttribute("version", qGenToQStr(QGEN_VER));
     doc.appendChild(root);
     QDomElement structure = doc.createElement("Structure");
     root.appendChild(structure);

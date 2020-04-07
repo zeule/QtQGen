@@ -20,6 +20,10 @@
 #ifndef SEARCHDATASTORE_H
 #define SEARCHDATASTORE_H
 
+#include <QStringList>
+
+class QSettings;
+
 class SearchDataStore
 {
 private:

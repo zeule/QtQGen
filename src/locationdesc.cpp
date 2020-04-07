@@ -21,6 +21,8 @@
 
 #include "icontrols.h"
 
+#include <QVBoxLayout>
+
 LocationDesc::LocationDesc(QWidget *parent, ILocationPage *locPage, IControls *controls) : QWidget(parent)
 {
     _controls = controls;

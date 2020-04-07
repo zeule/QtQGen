@@ -41,7 +41,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="_general">
       <property name="enabled">
@@ -870,13 +870,13 @@
   <customwidget>
    <class>ColorWidget</class>
    <extends>QWidget</extends>
-   <header>src/colorwidget.h</header>
+   <header>colorwidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>FontWidget</class>
    <extends>QLabel</extends>
-   <header>src/fontwidget.h</header>
+   <header>fontwidget.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

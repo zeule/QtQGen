@@ -1,0 +1,2 @@
+#cmakedefine GOOGLE_BREAKPAD
+#cmakedefine QGEN_UPDATER

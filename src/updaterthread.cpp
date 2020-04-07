@@ -19,6 +19,8 @@
 
 #include "updaterthread.h"
 
+#include <QThread>
+
 UpdaterThread::UpdaterThread(IControls *controls, QObject *parent) :
     QObject(parent)
 {

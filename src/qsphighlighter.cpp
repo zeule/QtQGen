@@ -68,7 +68,7 @@ void QspHighlighter::Update(bool isFromObservable)
     // потом комментарии
     commentFormat.setForeground(settings->GetColor(SYNTAX_COMMENTS));
     commentFormat.setFont(settings->GetFont(SYNTAX_COMMENTS));
-    rule.pattern = QRegExp("^\\!.*");
+    rule.pattern = QRegExp("^\\s*\\!.*");
     rule.format = commentFormat;
     highlightingRules.append(rule);
 
@@ -77,7 +77,7 @@ void QspHighlighter::Update(bool isFromObservable)
 
 void QspHighlighter::highlightBlock(const QString &text)
 {
-    QString txt = text.toLower().replace('$', '\\$'); // хак для распознавания слов, начинающихся с $
+    QString txt = text.toLower().replace('$', "\\$"); // хак для распознавания слов, начинающихся с $
 
     foreach (const HighlightingRule &rule, highlightingRules) {
         QRegExp expression(rule.pattern);

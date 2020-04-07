@@ -26,6 +26,8 @@
 
 class LocationPage;
 
+class QTranslator;
+
 enum SearchPlace
 {
     SEARCH_NONE,
@@ -138,6 +140,8 @@ public:
     virtual void SwitchLocActs() = 0;
 
     virtual bool GetSaveState() = 0;
+
+	virtual ~IControls() = default;
 };
 
 #endif // _ICONTROLS_

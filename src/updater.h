@@ -22,6 +22,16 @@
 
 #include "icontrols.h"
 
+#include <QMainWindow>
+#include <QDomDocument>
+#include <QNetworkAccessManager>
+
+class QDir;
+class QFile;
+class QTextEdit;
+class QProgressBar;
+class QPushButton;
+
 struct UpdateInfo
 {
     QString filename;

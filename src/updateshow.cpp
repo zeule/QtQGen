@@ -19,6 +19,13 @@
 
 #include "updateshow.h"
 
+#include <QLabel>
+#include <QVBoxLayout>
+#include <QTextEdit>
+#include <QPushButton>
+#include <QApplication>
+#include <QDesktopWidget>
+
 UpdateShow::UpdateShow(const QString &ver, const QString &desc, bool repair, QWidget *parent) :
     QDialog(parent)
 {

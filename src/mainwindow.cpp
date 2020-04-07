@@ -21,6 +21,11 @@
 #include "ui_mainwindow.h"
 #include "game.h"
 
+#include <QApplication>
+#include <QDesktopWidget>
+#include <QInputDialog>
+#include <QTimer>
+
 MainWindow::MainWindow(IControls *controls) :
     QMainWindow(),
     ui(new Ui::MainWindow)
@@ -133,7 +138,7 @@ void MainWindow::OnSaveGameAs()
                                                 );
         if (!filename.isEmpty())
         {
-            QString password = QString::fromWCharArray(QGEN_PASSWD);
+            QString password = qGenToQStr(QGEN_PASSWD);
             if (_controls->GetSettings()->GetSaveGameWithPassword())
             {
                 QString pass = QInputDialog::getText(this, QInputDialog::tr("Game password"),
@@ -301,7 +306,7 @@ void MainWindow::OnDelAllActions()
 void MainWindow::OnAbout()
 {
     QPixmap icon = QPixmap(":/about/logo");
-    QString version(QString::fromWCharArray(QGEN_VER));
+    QString version(qGenToQStr(QGEN_VER));
     QString guiCompiledDate(tr(__DATE__) + tr(", ") + tr(__TIME__));
     QMessageBox *dlg = new QMessageBox(QMessageBox::NoIcon, tr("About..."), tr(""), QMessageBox::Ok, this);
     dlg->setIconPixmap(icon);

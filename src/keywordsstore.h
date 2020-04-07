@@ -20,6 +20,11 @@
 #ifndef KEYWORDSTORE_H
 #define KEYWORDSTORE_H
 
+#include <QString>
+#include <QList>
+
+class QDomElement;
+
 enum KeywordType
 {
     DEFAULT = 0,

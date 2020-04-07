@@ -20,6 +20,10 @@
 #ifndef _QGEN_MERGE_DIALOG_H_
 #define _QGEN_MERGE_DIALOG_H_
 
+#include <QDialog>
+
+class QCheckBox;
+
 enum
 {
     ID_MERGE_REPLACE = 10600,

@@ -20,6 +20,8 @@
 #include "optionsdialog.h"
 #include "ui_optionsdialog.h"
 
+#include <QDirIterator>
+
 OptionsDialog::OptionsDialog(IControls *control, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::OptionsDialog)

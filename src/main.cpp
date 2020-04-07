@@ -18,9 +18,19 @@
 */
 
 #include "controls.h"
-#include "crashhandler.h"
 #include "mainwindow.h"
 #include "updaterthread.h"
+
+#include <QApplication>
+#include <QTranslator>
+#include <QLocale>
+#include <QLibraryInfo>
+
+#include "config.h"
+
+#ifdef GOOGLE_BREAKPAD
+	#include "crashhandler.h"
+#endif
 
 int main(int argc, char **argv)
 {
@@ -28,15 +38,16 @@ int main(int argc, char **argv)
 
     QApplication application(argc, argv);
 
+#ifdef GOOGLE_BREAKPAD
     CrashHandler::instance()->Init(application.applicationDirPath() + QDir::separator() + "crash");
-
+#endif
     QTranslator qtTranslator;
     qtTranslator.load("qt_" + QLocale::system().name(),
         QLibraryInfo::location(QLibraryInfo::TranslationsPath));
     application.installTranslator(&qtTranslator);
 
     application.setApplicationName("QGen");
-    application.setApplicationVersion(QString::fromWCharArray(QGEN_VER));
+    application.setApplicationVersion(qGenToQStr(QGEN_VER));
     Controls *_controls = new Controls(application.applicationDirPath());
 
     _controls->UpdateLocale(_controls->GetSettings()->GetLocale());

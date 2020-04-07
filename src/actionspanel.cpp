@@ -19,6 +19,8 @@
 
 #include "actionspanel.h"
 
+#include <QToolButton>
+
 ActionsPanel::ActionsPanel(QWidget *parent, ILocationPage *locPage, ActionCode *actCode, IControls *controls) : QWidget(parent)
 {
     _controls = controls;

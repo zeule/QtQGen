@@ -19,6 +19,12 @@
 
 #include "searchdialog.h"
 
+#include <QVBoxLayout>
+#include <QComboBox>
+#include <QCheckBox>
+#include <QPushButton>
+#include <QLineEdit>
+
 SearchDialog::SearchDialog(IControls *controls, QString title, QWidget *parent) :
     QDialog(parent)
 {

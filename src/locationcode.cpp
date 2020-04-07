@@ -19,6 +19,8 @@
 
 #include "locationcode.h"
 
+#include <QVBoxLayout>
+
 LocationCode::LocationCode(QWidget *parent, ILocationPage *locPage, IControls *controls) : QWidget(parent)
 {
     _controls = controls;

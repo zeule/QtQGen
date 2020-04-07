@@ -19,6 +19,8 @@
 
 #include "syntaxtextbox.h"
 
+#include <QPainter>
+
 SyntaxTextBox::SyntaxTextBox(QWidget *parent, IControls *controls, int style) : QPlainTextEdit(parent)
 {
     _controls = controls;

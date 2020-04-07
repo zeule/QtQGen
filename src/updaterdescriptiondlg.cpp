@@ -20,11 +20,18 @@
 #include "updaterdescriptiondlg.h"
 #include "game.h"
 
+#include <QVBoxLayout>
+#include <QLabel>
+#include <QTextEdit>
+#include <QPushButton>
+#include <QApplication>
+#include <QDesktopWidget>
+
 UpdaterDescriptionDlg::UpdaterDescriptionDlg(QWidget *parent) :
     QDialog(parent)
 {
     QVBoxLayout *vbox = new QVBoxLayout;
-    setWindowTitle(tr("Update ") + QString::fromWCharArray(QGEN_VER));
+    setWindowTitle(tr("Update ") + qGenToQStr(QGEN_VER));
     QLabel *label = new QLabel(tr("Input description for update:"));
     text = new QTextEdit(this);
     QHBoxLayout *hbox = new QHBoxLayout;
